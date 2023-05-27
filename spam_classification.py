@@ -41,7 +41,11 @@ for i in ham[:]:
 hamm = pd.DataFrame(hamm, columns=['spam_ham'])
 
 
+#creating a new column in the pandas dataframe named result and the spam was labeled as 1
+spamm['result'] = spamm.apply(lambda x: 1 for x in spamm)
 
+#creating a new column in the pandas dataframe named result and the ham was labeled as 0
+hamm['result'] = hamm.apply(lambda x: 0 for x in hamm)
 #this is the first method in cleaning the messages
 '''
 #creating a new column in the pandas dataframe named result and the spam was labeled as 1
@@ -129,11 +133,12 @@ df = pd.concat([spamm,hamm], ignore_index=True)
 #tfidf vectorizer helps pass text into a model by converting the words/letters into values which the model understands
 tfidf = TfidfVectorizer()
 tfidf.fit(df['spam_ham'])
-tfidf_result = tfidf.transform(df['spam_ham'])
+tfidf_result = tfidf.transform(df['spam_ham']).toarray()
 
 #then i passed the vectorized spam_ham column into X and the result as y
 X = tfidf_result
 y = df['result']
+
 
 #split the data into test and train set
 X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.3)
@@ -145,13 +150,38 @@ y_pred = lr.predict(X_test)
 
 #to confirm that my model is not overfitted and will perform well on training and test dataset
 #I got an accuracy of 98% - this means my model will perform well on a message it has not seen before and classify it almost correctly, whether it is a spam or ham message
-print(lr.score(X_test,y_test))
+#print(lr.score(X_test,y_test))
 
 #the classification report metrics showing the f1-score and the accuracy
 from sklearn.metrics import classification_report
-print(classification_report(y_test, y_pred))
+#print(classification_report(y_test, y_pred))
 
-
+#message = input('the message? ')
+#data = tfidf.transform([message]).toarray()
+#result = (lr.predict(data))
+#for i in result:
+#    if i == '1':
+#        print('spam')
+#    else:
+#        print('ham')
+        
+import streamlit as st
+st.title('Spam or Ham Classifier')
+def lol():
+    user = st.text_area('enter any news/message/mail')
+    if len(user) < 1:
+        st.write(' ')
+    else:
+        message = user
+        data = tfidf.transform([message]).toarray()
+        result = (lr.predict(data))
+        #print(result)
+        
+        if result == [1]:
+            print('spam')
+        else:
+            print('ham')
+lol()
 
 
 
