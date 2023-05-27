@@ -150,13 +150,3 @@ print(lr.score(X_test,y_test))
 #the classification report metrics showing the f1-score and the accuracy
 from sklearn.metrics import classification_report
 print(classification_report(y_test, y_pred))
-
-
-
-
-
-
-
-
-
-
