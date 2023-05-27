@@ -12,6 +12,7 @@ from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
+import streamlit as st
 
 #check the folder properties for the files formats in the folder
 #then use the glob function to iterate through our folder for a certain file format
@@ -150,12 +151,11 @@ y_pred = lr.predict(X_test)
 
 #to confirm that my model is not overfitted and will perform well on training and test dataset
 #I got an accuracy of 98% - this means my model will perform well on a message it has not seen before and classify it almost correctly, whether it is a spam or ham message
-#print(lr.score(X_test,y_test))
+print(lr.score(X_test,y_test))
 
 #the classification report metrics showing the f1-score and the accuracy
 from sklearn.metrics import classification_report
-<<<<<<< HEAD
-#print(classification_report(y_test, y_pred))
+print(classification_report(y_test, y_pred))
 
 #message = input('the message? ')
 #data = tfidf.transform([message]).toarray()
@@ -166,7 +166,7 @@ from sklearn.metrics import classification_report
 #    else:
 #        print('ham')
         
-import streamlit as st
+
 st.title('Spam or Ham Classifier')
 def lol():
     user = st.text_area('enter any news/message/mail')
@@ -176,21 +176,8 @@ def lol():
         message = user
         data = tfidf.transform([message]).toarray()
         result = (lr.predict(data))
-        #print(result)
-        
         if result == [1]:
             print('spam')
         else:
             print('ham')
 lol()
-
-
-
-
-
-
-
-
-=======
-print(classification_report(y_test, y_pred))
->>>>>>> ded95f225bf2358f91dd9ff0bc504404840286aa
