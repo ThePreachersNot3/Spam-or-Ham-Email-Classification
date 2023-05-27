@@ -158,29 +158,12 @@ from sklearn.metrics import classification_report
 print(classification_report(y_test, y_pred))
 <<<<<<< HEAD
 
-#message = input('the message? ')
-#data = tfidf.transform([message]).toarray()
-#result = (lr.predict(data))
-#for i in result:
-#    if i == '1':
-#        print('spam')
-#    else:
-#        print('ham')
-        
 
-st.title('Spam or Ham Classifier')
-def lol():
-    user = st.text_area('enter any news/message/mail')
-    if len(user) < 1:
-        st.write(' ')
-    else:
-        message = user
-        data = tfidf.transform([message]).toarray()
-        result = (lr.predict(data))
-        if result == [1]:
-            print('spam')
-        else:
-            print('ham')
-lol()
-=======
->>>>>>> ded95f225bf2358f91dd9ff0bc504404840286aa
+
+
+
+
+
+
+
+
