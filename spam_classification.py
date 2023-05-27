@@ -154,6 +154,7 @@ y_pred = lr.predict(X_test)
 
 #the classification report metrics showing the f1-score and the accuracy
 from sklearn.metrics import classification_report
+<<<<<<< HEAD
 #print(classification_report(y_test, y_pred))
 
 #message = input('the message? ')
@@ -190,3 +191,6 @@ lol()
 
 
 
+=======
+print(classification_report(y_test, y_pred))
+>>>>>>> ded95f225bf2358f91dd9ff0bc504404840286aa
